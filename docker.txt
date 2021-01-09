@@ -31,4 +31,8 @@ get img_id with "docker images"
 
 -----------------------------------------------------
 
-Video 34. 
+Video 34. Inspecting Images
+"docker image inspect <img_id>"
+Shows many information about that image. (exposed port, entry point, docker version, operating system, etc)
+
+-----------------------------------------------------.
