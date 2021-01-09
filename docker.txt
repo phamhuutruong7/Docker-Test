@@ -35,4 +35,10 @@ Video 34. Inspecting Images
 "docker image inspect <img_id>"
 Shows many information about that image. (exposed port, entry point, docker version, operating system, etc)
 
------------------------------------------------------.
+-----------------------------------------------------
+
+Video 35. Copying File into & from a container. 
+"docker cp dummy/. <container>:/test" will copy into "test" folder of the container. 
+"docker cp boring_vaughan:text dummy" will copy into "dummy" folder of the local container. 
+
+Allows to add something to container, without stop and restart container. 
