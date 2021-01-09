@@ -1,3 +1,14 @@
 Video 28. Stopping & Restarting Containers
 It is possible to view all stopped container with "docker ps -a" then restart them 
 
+Video 29. Attached and Detached Containers. 
+There are two mode to run containers. 
+We can decide which mode we want to use when start containers. (attached or detached)
+with (-a or -d)
+
+Attached Mode: container will run directly on Terminal (and that terminal can't do anything else.)
+And it can receive the input of the app and show in on that Terminal. 
+
+Detached Mode: the container will run silently in Terminal and will not receive input or showing output. 
+
+If a container is running in Detached Mode, we still can see it's 'logs'. 
