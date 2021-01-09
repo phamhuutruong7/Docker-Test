@@ -21,3 +21,14 @@ If a container is running in Detached Mode, we still can see it's 'logs'.
 Video 32. Deleting Images and Containers. 
 "docker container prune" to delete all stopped containers. 
 "docker rmi <image_id>" to remove images.
+
+-----------------------------------------------------
+
+Video 33. Removing Stopped Containers Automatically
+"docker run -p 3000:8000 -d --rm <img_id>"
+get img_id with "docker images"
+
+
+-----------------------------------------------------
+
+Video 34. 
