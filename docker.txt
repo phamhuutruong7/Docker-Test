@@ -42,3 +42,15 @@ Video 35. Copying File into & from a container.
 "docker cp boring_vaughan:text dummy" will copy into "dummy" folder of the local container. 
 
 Allows to add something to container, without stop and restart container. 
+
+-----------------------------------------------------
+
+Video 36. Naming & Tagging Containers and Images. 
+docker run -p 3000:8000 -d --rm --name <app_name> <img_id>
+
+"name:tag"
+name: Defines a group of, possible more specialized, images. exp: node
+tag: Defiens a specialized image within a group of images. exp: 14 (version)
+
+-----------------------------------------------------
+
