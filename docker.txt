@@ -54,3 +54,90 @@ tag: Defiens a specialized image within a group of images. exp: 14 (version)
 
 -----------------------------------------------------
 
+Assignment 1: Practice Docker with 2 app nodejs and python. 
+
+1. In node-app, write Dockerfile, then run "docker build ."
+2. Do the same thing with python-app.
+3. Run: docker run -p <port on local>:<expose port of container> <image_id>
+**NOTE**: Can't stop with Ctrl + C. You have to open a Terminal and stop with "docker stop"
+4. With python-app. This app is just a console app, which will receive an input. So it will run with different way. 
+"docker run -it <img_id>". This app need to be in attached mode. 
+This app will not run on container (cant see with "docker ps")
+5. Name it with:
+"docker run -it --name pythonapp <img_id>"
+6. Stop container then rm with 
+"docker rm <container name>"
+7. Rebuild images, with names and tags assigned to them. 
+"docker build -t node-demo:latest ."
+"docker build -t bmi-app:1 ."
+
+Run with:
+"docker run -p 8000:3000 -d --name nodeapp --rm node-demo:latest"
+"docker run -it --name bmiapp --rm bmiapp:1"
+
+-----------------------------------------------------
+Video 37. Sharing images - Overview
+-Everyone who has an image, can create containers based on the image!.
+=>
+*Share a Dockerfile*:
+- Simply run "docker build ."
+- Important: The Dockerfile instructions might need surrounding files/folders (eg.source code)
+
+*Share a Built Image*
+- Download an image, run a container based on it. 
+- No build step required, everything is included in the image already.
+
+-----------------------------------------------------
+Video 38. Pushing Images to Dockerhub
+Can share images through Docker Hub or by Private Registry. 
+
+After created a repository on DockerHub it will generate a name and a command to run like: 
+"docker push phamhuutruong7/node-hello-word" with phamhuutruong7/node-hello-world is the name. 
+The name of the image in local must be the same like this. 
+To clone the old image with the new name, we use: 
+"docker tag node-demo:latest phamhuutruong7/node-hello-world"
+And then we can push. 
+
+Docker also has login and logout. 
+
+-----------------------------------------------------
+Video 39. Pulling and Using Shared Images. 
+
+use "docker pull phamhuutruong7/node-hello-world to download the image. 
+then can run image with "docker run <name>"
+
+-----------------------------------------------------
+Quiz 2: 
+1. Result of following commands: 
+
+docker build -t myimage
+docker run --name mycontainer myimage
+docker stop mycontainer
+
+An image is created, a container is started then stopped. Both, image and container, have a name assigned by the developer. 
+
+2. Assume that these commands were executed:
+docker build -t myimage:latest
+docker run --name mycontainer --rm myimage
+docker stop mycontainer
+
+which command will fail? 
+"docker rm mycontainer" fail. 
+"docker ps -a" and "docker rmi myimage:latest" work.
+
+3. What is the idea behind image tags?
+An image can have a name then multiple "versions" of that image attached on the same name. 
+
+4. Do you have to assign custom image tags and container names?
+No, Docker auto-assigns names and ids. 
+
+-----------------------------------------------------
+Video 40. Module summary. 
+* Docker is all about Images and Containers
+* Images are the templates/ blueprints for Containers, multiple Containers can be created based on one Image. 
+* Images are either downloaded (docker pull) or created with a Dockerfile and docker build. 
+* Images contain multiple layers (1 Instruction = 1 Layer) to optimize build speed(caching!) and re-usability. 
+* Containers are created with docker run IMAGE and can be configured with various options/ flags (-it, -rm etc).
+* Containers can be listed(docker ps) removed(docker rm) and stopped + started (docker stop/ start).
+* Images can also be listed (docker images), removed(docker rmi, docker image prune) and shared (docker push/pull)
+
