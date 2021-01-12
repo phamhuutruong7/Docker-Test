@@ -10,5 +10,7 @@ COPY . /app
 
 EXPOSE 8000
 
+VOLUME [ "/app/feedback" ]
+
 CMD ["node", "server.js"]
 

@@ -141,3 +141,52 @@ Video 40. Module summary.
 * Containers can be listed(docker ps) removed(docker rm) and stopped + started (docker stop/ start).
 * Images can also be listed (docker images), removed(docker rmi, docker image prune) and shared (docker push/pull)
 
+-----------------------------------------------------
+Module 3 - Managing Data in Images and Containers
+(Writing, Reading & Persisting Data)
+
+Video 43. Understanding Data Categories/ Different Kinds of Data. 
+
+* Application (Code + Environment):
+- Written & provided by you (=the developer).
+- Added to image and container in build phase.
+- "Fixed": Can't be changed once image is built. 
+=> Read only, hence stored in Images. 
+
+* Temporary App Data (e.g entered user input)
+- Fetched/ Produced in running container
+- Stored in memory or temporary files. 
+- Dynamic and changing but cleared regularly. 
+=> Read + write temporary, hence stored in Container.
+
+* Permanent App Data (e.g user accounts)
+- Fetched/ Produced in running container
+- Stored in files or database
+- Must not be lost if container stops/ restarts.
+=>Read + write permanent, stored with Containers * Volumes.
+
+-----------------------------------------------------
+ Video 46. Understanding the Problem. 
+
+If any file, created with a specific Container, it will not lost because the container stopped. 
+It only lost if the container is removed. 
+
+So in reality, if there is a new version of application is updated, we will not want the old data to be deleted. 
+
+-----------------------------------------------------
+Video 47. Introducing Volumes. 
+
+*Volumes: are folders on your host machine hard drive which are mounted ("made available", mapped) into containers.
+
+Volumes persist if a container shuts down. 
+If a container (re-)starts and mounts a volume, any data inside of that volume is available in the container. 
+
+A container can write data into a volume and read data from it. 
+
+-----------------------------------------------------
+Video 48.
+
+
+
+
+
