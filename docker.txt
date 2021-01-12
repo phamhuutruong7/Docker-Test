@@ -184,9 +184,105 @@ If a container (re-)starts and mounts a volume, any data inside of that volume i
 A container can write data into a volume and read data from it. 
 
 -----------------------------------------------------
-Video 48.
+Video 49. Named Volumes to the rescue!
+
+Two Types of External Data Storages.
+
+*Volumes (Managed by Docker):
+Anonymous Volumes + Named Volumes.
+Docker sets up a folder/ path on your host machine, exact location is unknown to you (=dev).
+Managed via docker volume commands. 
+
+A defined path in the container is mapped to the created volume/mount. 
+e.g/some-path on your hosting machine is mapped to /app/data
+
+Great for data which should be persistent but which you don't need to edit directly. 
 
 
+*Bind Mounts (Managed by you):
+
+You define a folder/path on your host machine.
+Great for persistent, editable (by you) data (e.g source code).
 
 
+To name a Volume: add a -v when run docker. example:
+-v feedback:/app/feedback
+and this will need everytime when rebuild the container. 
 
+Everytime docker run is called, it will create a new volume, except we bind it with the old volume. 
+
+docker volume can be remove with:
+"docker volume rm VOL_NAME" or "docker volume prune"
+
+-----------------------------------------------------
+Video 51. Getting Started with Bind mounts (Code Sharing)
+"docker run -d -p 3000:8000 --rm --name feedback-app -v feedback:/app/feedback -v:C:/User/PhamHuuTruong/server.js:/app feedback-node:volumes
+
+-----------------------------------------------------
+Video 53. Combining & Merging Different Volumes.
+Understanding Container / Volume Interaction
+
+-----------------------------------------------------
+Video 54. A Nodejs specific Adjestment: Using Nodemon in a container. 
+
+nodemon is a dependency of nodejs. 
+
+-----------------------------------------------------
+Video 55. Volumes and Bind mounts: Summary.
+Anonymous volume: "docker run -v /app/data..."
+Named Volume: "docker run -v data:/app/data ..."
+Bind Mount: "docker run -v /path/to/code:/app/code ..."
+
+*Anonymous Volumes:
+- Created specifically for a single container
+- Survives container shutdown/ restart unless --rm is used.
+- Can not be shared across containers. 
+- Since it's anonymous, it can't be re-used (even on same image)
+
+*Named Volumes:
+- Created in general - not tied to any specific container
+- Survives container shutdown / restart -removal via Docker CLI
+- Can be shared across containers. 
+- can be re-used for same container (across restarts)
+
+*Bind Mounts:
+- Location on host file system, not tied to any specific container
+- Survives container shutdown / restart - removal on host fs 
+- Can be shared across containers.
+- Can be re-used for same container (across restarts)
+
+-----------------------------------------------------
+
+Quiz 3:
+1. What is a Volume:
+A folder / file inside of a Docker container which is connected to some folder outside of the container. 
+
+2. Which statement is correct?
+True: Volumes are managed by Docker, you don't necessarily know where the host folder (which is mapped to a container - internal path) is. 
+False: 
++ Volumes are managed by Docker, you decide which folder outside of a container is mapped to a container-internal path.
++ Volumes can only be attached to images, not to containers, except for Anonymous Volumes. 
+
+3. What is true about Anonymous Volumes?
+They are removed when a container, that was started with "--rm" is stopped. 
+
+4. What is the advantage of "Named Volumes"?
+True: They survive container removal. 
+False: 
++ They are easier to identify when executing "docker run"
++ You know the path on your host machine, this volume is bound to. 
+
+5. What is a "Bind Mount"
+True: A path on your host machine, which you know and specified, that is mapped to some container-internal path. 
+False: 
++ A path inside of the container which is specified by you, not by Docker. 
++ A volume which has a name but is still fully managed by Docker. 
+
+6. What 's a typical use-case for a "Bind Mount"?
+True: You want to provide "live data" to the container (no rebuilding needed)
+False: 
++ You want to ensure data persists.
++ You want to provide "live data" to the container (image rebuilding needed)
+
+7. Are Anonymous Volumes useless?
+No, you can use them to prioritize container-internal paths higher then external paths. 
